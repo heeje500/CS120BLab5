@@ -24,7 +24,7 @@ int main(void) {
 	unsigned char tmpA = 0x00;
     /* Insert your solution below */
     while (1) {
-	tmpA = ~PINA & 0x0F;
+	tmpA = ~PINA & 0xFF;
 
 	if (tmpA == 0x00) {
 		light = 0x40;
