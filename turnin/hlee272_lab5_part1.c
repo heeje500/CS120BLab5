@@ -25,39 +25,34 @@ int main(void) {
 	unsigned char tmpA = 0x00;
     /* Insert your solution below */
     while (1) {
-	tmpA = ~PINA & 0xFF;
+	tmpA = ~PINA & 0x0F;
 
-	if (tmpA == 0x00) {
-		light = 0x40;
+	if (tmpA > 12) {
+		light = 0x3F;
 	}
 
-	else if (tmpA < 3) {
-		light = 0x20;
-	}
-
-	else if (tmpA < 5 ) {
-		light = 0x30;
-	}
-
-	else if (tmpA < 7) {
-		light = 0x38;
-	}
-
-	else if (tmpA < 10) {
-		light = 0x3C;
-	}
-
-	else if (tmpA < 13) {
+	else if (tmpA > 9) {
 		light = 0x3E;
 	}
 
-	else {
-		light = 0x3F;
+	else if (tmpA > 6) {
+		light = 0x3C;
 	}
-	
-	//low fuel
-	if (tmpA < 5) {
-		light = light + 0x40;
+
+	else if (tmpA > 4) {
+		light = 0x38;
+	}
+
+	else if (tmpA > 2) {
+		light = 0x70;
+	}
+
+	else if (tmpA > 0) {
+		light = 0x60;
+	}
+
+	else {
+		light = 0x40;
 	}
 
 	PORTC = light;
