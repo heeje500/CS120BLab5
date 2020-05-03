@@ -20,7 +20,7 @@ void Tick();
 int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFF; //inputs
-	DDRC = 0xFF; PORTC = 0x07; //outputs
+	DDRC = 0xFF; PORTC = 0x00; //outputs
 
 	state = Start;
     /* Insert your solution below */
@@ -35,7 +35,6 @@ void Tick() {
 	switch(state) {
 	
 	case Start:
-	PORTC =0x07;
 	state = init;
 	break;
 
@@ -101,7 +100,7 @@ void Tick() {
 	{
 	
 	case Start: 
-	PORTC = 0x07;
+	PORTC = 0x00;
 	break;
 
 	case init: 
@@ -111,22 +110,22 @@ void Tick() {
 	break;
 
 	case inc:
-	if (PORTC >= 0x09) {
-	PORTC = 0x09;
+	if (PORTC < 0x09) {
+	PORTC = PORTC + 0x01;
 	}
 
 	else {
-	PORTC = PORTC + 0x01;
+	PORTC = PORTC;
 	}
 	break;
 
 	case dec: 
-	if (PORTC <= 0x00) {
-	PORTC = 0x00;
+	if (PORTC > 0x00) {
+	PORTC = PORTC - 0x01;
 	}
 
 	else {
-	PORTC = PORTC - 0x01;
+	PORTC = PORTC;
 	}
 	break;
 
